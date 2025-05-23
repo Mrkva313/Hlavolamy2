@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <title>Logický hlavolam</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 2rem; background-color: #f4f4f4; color: #333; }
+        .slide { display: none; }
+        .slide.active { display: block; }
+        button { padding: 0.5rem 1rem; margin-top: 1rem; }
+        img { max-width: 100%; height: auto; margin-top: 1rem; border-radius: 12px; }
+    </style>
+</head>
+<body>
+    <h1>Logický hlavolam</h1>
+    <div id="slides">
+        <div class="slide active" data-answer="krabica">
+            <p>Otvoríš krabicu, v ktorej je nápis „zlatá minca je v tejto krabici“ a druhá krabica hovorí „zlatá minca nie je v tejto krabici“. Vieš, že len jedna z nich hovorí pravdu. Ktorú otvoríš ako prvú, aby si zistil, čo je v každej z nich?</p>
+            <input type="text" placeholder="odpoveď">
+            <button>Ďalej</button>
+        </div>
+        <div class="slide" data-answer="patek">
+            <p>Sudca povedal odsúdenému: „Popravíme ťa budúci týždeň v deň, ktorý nebudeš očakávať.“ Odsúdený si celý týždeň lámal hlavu, a nakoniec pochopil, kedy to musí byť. Kedy?</p>
+            <input type="text" placeholder="odpoveď">
+            <button>Ďalej</button>
+        </div>
+        <div class="slide" data-answer="kniha">
+            <p>V miestnosti je sviečka, krabička zápaliek a krabička od topánok. Ako pripevníš sviečku na stenu tak, aby vosk nekvapkal na zem?</p>
+            <input type="text" placeholder="odpoveď">
+            <button>Ďalej</button>
+        </div>
+        <div class="slide" data-answer="ticho">
+            <p>Čo sa zlomí, keď to vyslovíš?</p>
+            <input type="text" placeholder="odpoveď">
+            <button>Ďalej</button>
+        </div>
+        <div class="slide" data-answer="cibula">
+            <p>Som vrstvovitá a rozplačem ťa, keď ma rozkrojíš. Čo som?</p>
+            <input type="text" placeholder="odpoveď">
+            <button>Ďalej</button>
+        </div>
+        <div class="slide" data-answer="ty">
+            <p>Si sudca. Máš pred sebou troch ľudí. Jeden vždy hovorí pravdu, jeden vždy klame a jeden strieda pravdu a lož. Každý z nich povie:<br>
+            Prvý: „Druhý je klamár.“<br>
+            Druhý: „Tretí je klamár.“<br>
+            Tretí: „Ja som ten, kto hovorí pravdu.“<br>
+            Kto z nich je sudca?</p>
+            <input type="text" placeholder="odpoveď">
+            <button>Ďalej</button>
+        </div>
+        <div class="slide">
+            <h2>Gratulujem!</h2>
+            <p>Správne si vyriešil(a) všetky úlohy. Tu je tvoja výhra:</p>
+            <img src="1000027368.jpg" alt="Výherný obrázok">
+        </div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const buttons = document.querySelectorAll('button');
+
+        buttons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                const input = slides[index].querySelector('input');
+                const answer = slides[index].dataset.answer;
+                if (!input || input.value.trim().toLowerCase() === answer) {
+                    slides[index].classList.remove('active');
+                    if (slides[index + 1]) slides[index + 1].classList.add('active');
+                } else {
+                    alert('Nesprávna odpoveď. Skús znova.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
